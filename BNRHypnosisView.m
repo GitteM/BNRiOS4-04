@@ -67,6 +67,21 @@
     // Draw the line
     [path stroke];
     
+    UIImage *logo = [UIImage imageNamed:@"logo.png"];
+
+    float r = 2.0;
+    CGSize logoSize;
+    logoSize.width = logo.size.width / r;
+    logoSize.height = logo.size.height / r;
+    
+    CGPoint logoPoint;
+    logoPoint.x = ((bounds.origin.x + bounds.size.width) - logoSize.width) / 2.0;
+    logoPoint.y = ((bounds.origin.y + bounds.size.height) - logoSize.height) / 2.0;
+    
+    CGRect logoRect = CGRectMake(logoPoint.x, logoPoint.y, logoSize.width, logoSize.height);
+    
+    [logo drawInRect:logoRect];
+    
 }
 
 @end
