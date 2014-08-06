@@ -68,7 +68,7 @@
     [path stroke];
     
     UIImage *logo = [UIImage imageNamed:@"logo.png"];
-
+    
     float r = 2.0;
     CGSize logoSize;
     logoSize.width = logo.size.width / r;
@@ -80,8 +80,33 @@
     
     CGRect logoRect = CGRectMake(logoPoint.x, logoPoint.y, logoSize.width, logoSize.height);
     
+    CGFloat locations[2] = {0.0, 1.0};
+    CGFloat components[8] = {0.0, 1.0, 0.0, 1.0, // Start Color - Green
+        1.0, 1.0, 0.0, 1.0}; // End Color - Yellow
+    
+    CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
+    CGGradientRef gradient = CGGradientCreateWithColorComponents(colorspace, components, locations, 2);
+    
+    CGPoint startpoint = logoPoint;
+    CGPoint endpoint;
+    endpoint.x = logoPoint.x;
+    endpoint.y = logoPoint.y + logoSize.height;
+    
+    CGContextRef currentContext = UIGraphicsGetCurrentContext();
+    
+    CGContextDrawLinearGradient(currentContext, gradient, startpoint, endpoint,  kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
+    
+    CGGradientRelease(gradient);
+    CGColorSpaceRelease(colorspace);
+    
+    // Drop Shadow on logo
+    
+    CGContextSaveGState(currentContext);
+    CGContextSetShadow(currentContext, CGSizeMake(4, 7), 3);
+    
     [logo drawInRect:logoRect];
     
+    CGContextRestoreGState(currentContext);
 }
 
 @end
