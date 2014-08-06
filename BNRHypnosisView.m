@@ -67,6 +67,7 @@
     // Draw the line
     [path stroke];
     
+    // Define the logo
     UIImage *logo = [UIImage imageNamed:@"logo.png"];
     
     float r = 2.0;
@@ -80,30 +81,56 @@
     
     CGRect logoRect = CGRectMake(logoPoint.x, logoPoint.y, logoSize.width, logoSize.height);
     
+    // Define the Gradient
     CGFloat locations[2] = {0.0, 1.0};
     CGFloat components[8] = {0.0, 1.0, 0.0, 1.0, // Start Color - Green
         1.0, 1.0, 0.0, 1.0}; // End Color - Yellow
     
     CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
     CGGradientRef gradient = CGGradientCreateWithColorComponents(colorspace, components, locations, 2);
-    
-    CGPoint startpoint = logoPoint;
+
+    CGPoint startpoint;
+    startpoint.x = (bounds.origin.x + bounds.size.width) / 2;
+    startpoint.y = logoPoint.y - 20;
     CGPoint endpoint;
-    endpoint.x = logoPoint.x;
-    endpoint.y = logoPoint.y + logoSize.height;
+    endpoint.x = startpoint.x;
+    endpoint.y = logoPoint.y + logoSize.height + 20;
     
     CGContextRef currentContext = UIGraphicsGetCurrentContext();
     
-    CGContextDrawLinearGradient(currentContext, gradient, startpoint, endpoint,  kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
+    CGContextSaveGState(currentContext);
+
+    // Define the Grandient Clip Path - draw triangle
+    
+    UIBezierPath *clipPath = [[UIBezierPath alloc]init];
+
+    [clipPath moveToPoint:startpoint];
+    
+    CGPoint leftCorner = endpoint;
+    leftCorner.x -= 100;
+    [clipPath addLineToPoint:leftCorner];
+    
+    CGPoint rightCorner = endpoint;
+    rightCorner.x += 100;
+    [clipPath addLineToPoint:rightCorner];
+    
+    [clipPath addLineToPoint:startpoint];
+    
+    [clipPath addClip];
+    
+    // Draw Gradient
+    CGContextDrawLinearGradient(currentContext, gradient, startpoint, endpoint,0);
+    
+    CGContextRestoreGState(currentContext);
     
     CGGradientRelease(gradient);
     CGColorSpaceRelease(colorspace);
     
-    // Drop Shadow on logo
-    
     CGContextSaveGState(currentContext);
+    
     CGContextSetShadow(currentContext, CGSizeMake(4, 7), 3);
     
+    // Draw Logo
     [logo drawInRect:logoRect];
     
     CGContextRestoreGState(currentContext);
