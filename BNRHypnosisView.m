@@ -109,12 +109,12 @@
     CGPoint leftCorner = endpoint;
     leftCorner.x -= 100;
     [clipPath addLineToPoint:leftCorner];
-    
+
     CGPoint rightCorner = endpoint;
     rightCorner.x += 100;
     [clipPath addLineToPoint:rightCorner];
     
-    [clipPath addLineToPoint:startpoint];
+    [clipPath closePath];
     
     [clipPath addClip];
     
