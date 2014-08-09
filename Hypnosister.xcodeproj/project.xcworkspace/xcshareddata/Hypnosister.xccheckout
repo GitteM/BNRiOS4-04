@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>A8D257B6-9582-4F2E-A8D2-6B36BF6A9679</string>
+	<string>E7FBDA7B-8B9B-4A62-95B4-7A28C49B1766</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Hypnosister</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>ABBDCAEB-A10E-43DA-B85F-EC3DC0BEBD60</key>
+		<key>12800638DB817C252E5B10974AB8A90C2EC689C9</key>
 		<string>https://github.com/GitteM/BNRiOS4-04.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Hypnosister.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>ABBDCAEB-A10E-43DA-B85F-EC3DC0BEBD60</key>
+		<key>12800638DB817C252E5B10974AB8A90C2EC689C9</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/GitteM/BNRiOS4-04.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>ABBDCAEB-A10E-43DA-B85F-EC3DC0BEBD60</string>
+	<string>12800638DB817C252E5B10974AB8A90C2EC689C9</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>ABBDCAEB-A10E-43DA-B85F-EC3DC0BEBD60</string>
+			<string>12800638DB817C252E5B10974AB8A90C2EC689C9</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Hypnosister</string>
 		</dict>
