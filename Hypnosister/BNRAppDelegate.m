@@ -9,6 +9,12 @@
 #import "BNRAppDelegate.h"
 #import "BNRHypnosisView.h"
 
+@interface BNRAppDelegate () <UIScrollViewDelegate>
+
+@property (nonatomic, strong) BNRHypnosisView *hypnosisView;
+
+@end
+
 @implementation BNRAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -25,24 +31,24 @@
     UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:screenRect];
     [self.window addSubview:scrollView];
     
-    // To force the scroll view to snap its viewing port to one of the views;
-    scrollView.pagingEnabled = YES;
-    
     // Create a screen-sized HypnosisView and add it to the scrollview
-    BNRHypnosisView * hypnosisView = [[BNRHypnosisView alloc]initWithFrame:screenRect];
-    [scrollView addSubview:hypnosisView];
-    
-    // Add a second screen-sized HypnosisView just off screen to the right
-    screenRect.origin.x += screenRect.size.width;
-    BNRHypnosisView *anotherView = [[BNRHypnosisView alloc]initWithFrame:screenRect];
-    [scrollView addSubview:anotherView];
+    self.hypnosisView = [[BNRHypnosisView alloc]initWithFrame:screenRect];
+    [scrollView addSubview:self.hypnosisView];
     
     // Tell the scrollView how big its content area is
     scrollView.contentSize = bigRect.size;
+    scrollView.delegate = self;
+    scrollView.pagingEnabled = NO;
+    scrollView.minimumZoomScale = 1.0;
+    scrollView.maximumZoomScale = 2.0;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return self.hypnosisView;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
